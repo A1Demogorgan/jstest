@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  distDir: 'build',
+  output: 'standalone',
+  env: {
+    CUSTOM_API_URL: process.env.CUSTOM_API_URL,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
