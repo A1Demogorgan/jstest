@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  distDir: 'build',
-  output: 'standalone',
-  env: {
-    CUSTOM_API_URL: process.env.CUSTOM_API_URL,
-  },
+  output: "standalone",
+  // distDir: "build", // only keep if you really need it
 };
 
-module.exports = nextConfig;
+export default nextConfig;
