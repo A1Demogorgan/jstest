@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030410;
+  --foreground: #ecf0ff;
+  --a1-ember: #ff6b4a;
+  --a1-violet: #7c5cff;
+  --a1-ice: #6ef3ff;
+  --a1-gold: #f6d27b;
+  --a1-ink: #0b0f24;
 }
 
 @theme inline {
@@ -12,15 +18,163 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Orbitron", system-ui, sans-serif;
+}
+
+.starfield {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+    radial-gradient(rgba(124, 92, 255, 0.35) 1px, transparent 1px),
+    radial-gradient(rgba(110, 243, 255, 0.25) 1px, transparent 1px);
+  background-position: 0 0, 40px 120px, 160px 40px;
+  background-size: 180px 180px, 220px 220px, 260px 260px;
+}
+
+.glow-orb {
+  filter: blur(12px);
+}
+
+.bot-core {
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.75), rgba(140, 104, 255, 0.45) 45%, rgba(13, 12, 39, 0.95) 78%);
+  box-shadow: 0 0 30px rgba(124, 92, 255, 0.6), 0 0 120px rgba(110, 243, 255, 0.35);
+}
+
+.bot-ring {
+  border: 1px solid rgba(110, 243, 255, 0.4);
+  box-shadow: 0 0 24px rgba(110, 243, 255, 0.35);
+}
+
+.scanline {
+  background: linear-gradient(90deg, transparent, rgba(124, 92, 255, 0.65), transparent);
+  animation: scan 3.6s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: float 3.8s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  background-size: 220% 100%;
+  animation: shimmer 3.2s ease-in-out infinite;
+}
+
+.type-caret::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 1.1em;
+  margin-left: 4px;
+  background: rgba(246, 210, 123, 0.9);
+  animation: blink 1.2s steps(2, start) infinite;
+}
+
+.roll-window {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: text-bottom;
+}
+
+.roll-track {
+  display: flex;
+  flex-direction: column;
+  line-height: 1em;
+  animation-fill-mode: forwards;
+  --roll-distance: -7em;
+}
+
+.roll-track span {
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  text-align: center;
+}
+
+.roll-loop {
+  animation: roll-loop 7.2s steps(7) infinite;
+}
+
+.roll-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.roll-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.roll-delay-3 {
+  animation-delay: 0.24s;
+}
+
+.roll-delay-4 {
+  animation-delay: 0.32s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(60%);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes roll-loop {
+  from {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(var(--roll-distance));
+  }
+  80% {
+    transform: translateY(var(--roll-distance));
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
